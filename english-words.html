@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <title>İngilizce Kelime Öğrenme</title>
+    <style>
+        body {
+            font-family: 'Comic Sans MS', cursive;
+            background-color: #f0f9ff;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .container {
+            background-color: white;
+            border-radius: 15px;
+            padding: 20px;
+            box-shadow: 0 0 15px rgba(0,0,0,0.1);
+            max-width: 600px;
+            width: 100%;
+            margin-top: 20px;
+        }
+        h1 {
+            color: #2563eb;
+            text-align: center;
+            font-size: 2em;
+            margin-bottom: 20px;
+        }
+        .card {
+            background-color: #dbeafe;
+            border-radius: 10px;
+            padding: 20px;
+            margin: 10px 0;
+            text-align: center;
+        }
+        .word {
+            font-size: 24px;
+            color: #1e40af;
+            margin: 10px 0;
+        }
+        .options {
+            display: grid;
+            gap: 10px;
+            margin: 15px 0;
+        }
+        .option-btn {
+            background-color: white;
+            border: 2px solid #3b82f6;
+            border-radius: 8px;
+            padding: 10px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        .option-btn:hover {
+            background-color: #3b82f6;
+            color: white;
+        }
+        .text-input {
+            width: 100%;
+            padding: 10px;
+            border: 2px solid #3b82f6;
+            border-radius: 8px;
+            font-size: 16px;
+            margin: 10px 0;
+        }
+        .check-btn {
+            background-color: #2563eb;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            padding: 12px 24px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        .check-btn:hover {
+            background-color: #1e40af;
+        }
+        .result {
+            margin-top: 10px;
+            font-size: 18px;
+            font-weight: bold;
+        }
+        .correct {
+            color: #059669;
+        }
+        .incorrect {
+            color: #dc2626;
+        }
+        .mode-toggle {
+            margin: 20px 0;
+        }
+        .error-message {
+            background-color: #fee2e2;
+            color: #dc2626;
+            padding: 10px;
+            border-radius: 8px;
+            margin: 10px 0;
+            text-align: center;
+        }
+        .loading {
+            text-align: center;
+            padding: 20px;
+            color: #2563eb;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>İngilizce Kelime Öğreniyorum! 🎓</h1>
+        
+        <div class="mode-toggle">
+            <label>
+                <input type="radio" name="mode" value="multiple" checked> Çoktan Seçmeli
+            </label>
+            <label>
+                <input type="radio" name="mode" value="write"> Yazarak Cevapla
+            </label>
+        </div>
+
+        <div class="card">
+            <div class="word"></div>
+            <div class="options"></div>
+            <input type="text" class="text-input" style="display: none;" placeholder="Türkçe karşılığını yazın...">
+            <button class="check-btn">Kontrol Et</button>
+            <div class="result"></div>
+        </div>
+    </div>
+
+    <script>
+        let words = [];
+        let currentWord = null;
+        let currentMode = 'multiple';
+
+        // DOM elementlerini seç
+        const wordElement = document.querySelector('.word');
+        const optionsElement = document.querySelector('.options');
+        const textInput = document.querySelector('.text-input');
+        const checkButton = document.querySelector('.check-btn');
+        const resultElement = document.querySelector('.result');
+        const modeInputs = document.querySelectorAll('input[name="mode"]');
+        const container = document.querySelector('.container');
+
+        // Hata mesajı gösterme fonksiyonu
+        function showError(message) {
+            const existingError = document.querySelector('.error-message');
+            if (existingError) {
+                existingError.remove();
+            }
+            const errorDiv = document.createElement('div');
+            errorDiv.className = 'error-message';
+            errorDiv.textContent = message;
+            container.insertBefore(errorDiv, container.firstChild);
+        }
+
+        // Loading mesajı gösterme fonksiyonu
+        function showLoading() {
+            const loadingDiv = document.createElement('div');
+            loadingDiv.className = 'loading';
+            loadingDiv.textContent = 'Kelimeler yükleniyor...';
+            container.insertBefore(loadingDiv, container.firstChild);
+        }
+
+        // Loading mesajını kaldırma fonksiyonu
+        function hideLoading() {
+            const loadingDiv = document.querySelector('.loading');
+            if (loadingDiv) {
+                loadingDiv.remove();
+            }
+        }
+
+        // Kelimeleri yükle
+        async function loadWords() {
+            showLoading();
+            try {
+                const response = await fetch('words.json');
+                if (!response.ok) {
+                    throw new Error('Kelime listesi yüklenemedi!');
+                }
+                const data = await response.json();
+                if (Array.isArray(data) && data.length > 0) {
+                    words = data;
+                    showNewWord();
+                } else {
+                    throw new Error('Geçersiz kelime verisi!');
+                }
+            } catch (error) {
+                showError(error.message);
+            } finally {
+                hideLoading();
+            }
+        }
+
+        // Uygulamayı başlat
+        loadWords();
+
+        // Mode değişikliğini dinle
+        modeInputs.forEach(input => {
+            input.addEventListener('change', (e) => {
+                currentMode = e.target.value;
+                if (currentMode === 'multiple') {
+                    optionsElement.style.display = 'grid';
+                    textInput.style.display = 'none';
+                } else {
+                    optionsElement.style.display = 'none';
+                    textInput.style.display = 'block';
+                }
+                showNewWord();
+            });
+        });
+
+        // Rastgele kelime seç ve göster
+        function showNewWord() {
+            if (words.length === 0) {
+                showError('Kelime listesi boş!');
+                return;
+            }
+            currentWord = words[Math.floor(Math.random() * words.length)];
+            if (!currentWord || !currentWord.english || !currentWord.turkish) {
+                showError('Geçersiz kelime verisi!');
+                return;
+            }
+            wordElement.textContent = currentWord.english;
+            
+            if (currentMode === 'multiple') {
+                showMultipleChoice();
+            }
+            textInput.value = '';
+            resultElement.textContent = '';
+        }
+
+        // Çoktan seçmeli seçenekleri oluştur
+        function showMultipleChoice() {
+            optionsElement.innerHTML = '';
+            
+            let options = [currentWord.turkish];
+            let attempts = 0;
+            while (options.length < 4 && attempts < 20) {
+                let randomWord = words[Math.floor(Math.random() * words.length)].turkish;
+                if (!options.includes(randomWord)) {
+                    options.push(randomWord);
+                }
+                attempts++;
+            }
+            
+            options.sort(() => Math.random() - 0.5);
+            
+            options.forEach(option => {
+                const button = document.createElement('button');
+                button.className = 'option-btn';
+                button.textContent = option;
+                button.addEventListener('click', () => checkAnswer(option));
+                optionsElement.appendChild(button);
+            });
+        }
+
+        // Cevabı kontrol et
+        function checkAnswer(answer) {
+            const userAnswer = currentMode === 'multiple' ? answer : textInput.value.trim().toLowerCase();
+            const correctAnswer = currentWord.turkish.toLowerCase();
+            
+            if (userAnswer === correctAnswer) {
+                resultElement.textContent = '🎉 Doğru cevap!';
+                resultElement.className = 'result correct';
+                setTimeout(showNewWord, 1500);
+            } else {
+                resultElement.textContent = '❌ Yanlış cevap. Tekrar deneyin!';
+                resultElement.className = 'result incorrect';
+            }
+        }
+
+        // Yazma modunda kontrol butonuna tıklama
+        checkButton.addEventListener('click', () => {
+            if (currentMode === 'write') {
+                checkAnswer();
+            }
+        });
+
+        // Enter tuşuna basılınca da kontrol et
+        textInput.addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') {
+                checkAnswer();
+            }
+        });
+    </script>
+</body>
+</html>
