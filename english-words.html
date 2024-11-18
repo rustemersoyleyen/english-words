@@ -20,7 +20,24 @@
             box-shadow: 0 10px 25px rgba(0,0,0,0.1);
             padding: 30px;
             text-align: center;
-            width: 400px;
+            width: 450px;
+        }
+        .mode-toggle {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 15px;
+        }
+        .mode-btn {
+            background-color: #4ecdc4;
+            border: none;
+            color: white;
+            padding: 10px 20px;
+            margin: 0 10px;
+            border-radius: 10px;
+            cursor: pointer;
+        }
+        .mode-btn.active {
+            background-color: #ff6b6b;
         }
         .score {
             display: flex;
@@ -74,8 +91,12 @@
 </head>
 <body>
     <div class="container">
+        <div class="mode-toggle">
+            <button id="turkceToEnglish" class="mode-btn active">Türkçe → İngilizce</button>
+            <button id="englishToTurkce" class="mode-btn">İngilizce → Türkçe</button>
+        </div>
         <div class="score">
-            <div>🇹🇷 Türkçe → İngilizce</div>
+            <div id="directionDisplay">🇹🇷 Türkçe → İngilizce</div>
             <div>Puan: <span id="scoreValue">0</span></div>
         </div>
         <div id="wordDisplay" class="word"></div>
@@ -91,28 +112,48 @@
         let currentWordIndex = 0;
         let score = 0;
         let selectedOption = null;
+        let isEnglishToTurkce = false;
 
         const wordDisplay = document.getElementById('wordDisplay');
         const optionsContainer = document.getElementById('optionsContainer');
         const scoreValue = document.getElementById('scoreValue');
         const checkBtn = document.getElementById('checkBtn');
         const nextBtn = document.getElementById('nextBtn');
+        const directionDisplay = document.getElementById('directionDisplay');
+        const turkceToEnglishBtn = document.getElementById('turkceToEnglish');
+        const englishToTurkceBtn = document.getElementById('englishToTurkce');
 
-        // JSON dosyasını fetch et
         fetch('words.json')
             .then(response => response.json())
             .then(data => {
-                words = data.words;
+                words = data;
                 displayWord();
             })
             .catch(error => console.error('Kelime yüklenirken hata:', error));
 
+        function generateOptions(correctAnswer, allWords) {
+            const options = [correctAnswer];
+            while (options.length < 4) {
+                const randomWord = allWords[Math.floor(Math.random() * allWords.length)];
+                const randomAnswer = isEnglishToTurkce ? randomWord.turkish : randomWord.english;
+                if (!options.includes(randomAnswer)) {
+                    options.push(randomAnswer);
+                }
+            }
+            return options.sort(() => Math.random() - 0.5);
+        }
+
         function displayWord() {
             const currentWord = words[currentWordIndex];
-            wordDisplay.textContent = currentWord.turkish;
+            const displayText = isEnglishToTurkce ? currentWord.english : currentWord.turkish;
+            const correctAnswer = isEnglishToTurkce ? currentWord.turkish : currentWord.english;
+            
+            wordDisplay.textContent = displayText;
             optionsContainer.innerHTML = '';
             
-            currentWord.options.forEach(option => {
+            const options = generateOptions(correctAnswer, words);
+            
+            options.forEach(option => {
                 const optionBtn = document.createElement('button');
                 optionBtn.textContent = option;
                 optionBtn.classList.add('option');
@@ -132,7 +173,9 @@
             if (!selectedOption) return;
 
             const currentWord = words[currentWordIndex];
-            if (selectedOption === currentWord.english) {
+            const correctAnswer = isEnglishToTurkce ? currentWord.turkish : currentWord.english;
+            
+            if (selectedOption === correctAnswer) {
                 score += 10;
                 scoreValue.textContent = score;
             }
@@ -144,8 +187,23 @@
             displayWord();
         }
 
+        function toggleMode(englishMode) {
+            isEnglishToTurkce = englishMode;
+            turkceToEnglishBtn.classList.toggle('active', !englishMode);
+            englishToTurkceBtn.classList.toggle('active', englishMode);
+            
+            directionDisplay.textContent = englishMode ? 
+                '🇬🇧 İngilizce → Türkçe' : 
+                '🇹🇷 Türkçe → İngilizce';
+            
+            currentWordIndex = 0;
+            displayWord();
+        }
+
         checkBtn.addEventListener('click', checkAnswer);
         nextBtn.addEventListener('click', nextWord);
+        turkceToEnglishBtn.addEventListener('click', () => toggleMode(false));
+        englishToTurkceBtn.addEventListener('click', () => toggleMode(true));
     </script>
 </body>
 </html>
