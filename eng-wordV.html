@@ -1,153 +1,214 @@
 <!DOCTYPE html>
-<html>
+<html lang="tr">
 <head>
     <meta charset="UTF-8">
-    <title>Kelime Oyunu</title>
+    <title>Kelime Öğrenme Uygulaması</title>
     <style>
-        .options {
-            margin: 20px 0;
+        body { 
+            font-family: 'Comic Sans MS', cursive; 
+            max-width: 600px; 
+            margin: 0 auto; 
+            padding: 20px; 
+            text-align: center; 
+            background-color: #f0f4f8;
+        }
+        .options { 
+            display: grid; 
+            grid-template-columns: 1fr 1fr; 
+            gap: 15px; 
         }
         .option {
-            margin: 10px 0;
+            padding: 15px;
+            background-color: #ffffff;
+            border: 3px solid #4a90e2;
+            border-radius: 15px;
+            cursor: pointer;
+            font-weight: bold;
+            color: #4a90e2;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+        .option:hover { 
+            transform: scale(1.05); 
+            background-color: #e6f2ff; 
+        }
+        .option.active {
+            border-color: #ffd700;
+            background-color: #fffde7;
+            box-shadow: 0 0 10px rgba(255,215,0,0.5);
+        }
+        .option.correct { 
+            background-color: #4CAF50; 
+            color: white; 
+            border-color: #45a049;
+        }
+        .option.wrong { 
+            background-color: #f44336; 
+            color: white; 
+            border-color: #d32f2f;
+        }
+        #resultMessage { 
+            margin-top: 15px; 
+            font-weight: bold; 
+            font-size: 18px;
             padding: 10px;
-            border: 1px solid #ccc;
-            border-radius: 4px;
-            cursor: pointer;
+            border-radius: 10px;
         }
-        .option:hover {
-            background-color: #f0f0f0;
-        }
-        .correct {
-            background-color: #90EE90;
-        }
-        .incorrect {
-            background-color: #FFB6C6;
-        }
-        #speakButton {
-            background: none;
+        button {
+            margin: 10px;
+            padding: 10px 20px;
+            border-radius: 20px;
             border: none;
+            background-color: #4a90e2;
+            color: white;
+            font-weight: bold;
             cursor: pointer;
-            font-size: 24px;
-            vertical-align: middle;
-            margin-left: 10px;
+            transition: background-color 0.3s;
+        }
+        button:hover {
+            background-color: #357abd;
+        }
+        button:disabled {
+            background-color: #cccccc;
+            cursor: not-allowed;
         }
     </style>
 </head>
 <body>
     <div>
-        🇹🇷 Türkçe → İngilizce
-
-        <div>
-            Puan: <span id="scoreValue">0</span>
-        </div>
-
-        <div style="display: flex; align-items: center;">
-            <h2 id="wordDisplay" style="color: #4a90e2; margin-right: 10px;"></h2>
-            <button id="speakButton">🔊</button>
-        </div>
-
-        <div id="optionsContainer" class="options">
-        </div>
-
+        <button id="directionToggle">🇹🇷 Türkçe → İngilizce</button>
+        <div>Puan: <span id="scoreValue">0</span></div>
+        
+        <h2 id="wordDisplay" style="color: #4a90e2;"></h2>
+        
+        <div id="optionsContainer" class="options"></div>
+        
         <div id="resultMessage"></div>
-
-        <button onclick="checkAnswer()">Kontrol Et</button>
-        <button onclick="displayWord()">Sonraki</button>
+        
+        <button id="checkButton" disabled>Kontrol Et</button>
+        <button id="nextButton">Sonraki</button>
     </div>
 
     <script>
-        let words = [];
-        let currentWord;
-        let score = 0;
-        let selectedOption = null;
+        <script>
+    // TTS Fonksiyonu
+    function speakText(text, language) {
+        const utterance = new SpeechSynthesisUtterance(text);
+        utterance.lang = language;
+        window.speechSynthesis.speak(utterance);
+    }
 
-        // Speech synthesis başlatma
-        const synth = window.speechSynthesis;
-
-        // JSON dosyasından kelimeleri yükle
-        fetch('words.json')
-            .then(response => response.json())
-            .then(data => {
-                words = data;
-                displayWord();
-            })
-            .catch(error => console.error('Kelimeler yüklenirken hata oluştu:', error));
-
-        function speak(text) {
-            // Önceki sesi durdur
-            synth.cancel();
-            
-            // Yeni sesi çal
-            const utterance = new SpeechSynthesisUtterance(text);
-            utterance.lang = 'en-US';
-            utterance.rate = 0.8;
-            synth.speak(utterance);
-        }
-
-        function getRandomWords(count) {
-            const shuffled = [...words].sort(() => 0.5 - Math.random());
-            return shuffled.slice(0, count);
-        }
-
-        function displayWord() {
-            const wordDisplay = document.getElementById('wordDisplay');
-            const optionsContainer = document.getElementById('optionsContainer');
-            const resultMessage = document.getElementById('resultMessage');
-            
-            resultMessage.innerHTML = '';
-            selectedOption = null;
-
-            const randomWords = getRandomWords(3);
-            currentWord = randomWords[0];
-            wordDisplay.textContent = currentWord.turkish;
-
-            const shuffledOptions = randomWords
-                .map(word => word.english)
-                .sort(() => 0.5 - Math.random());
-
-            optionsContainer.innerHTML = '';
-            shuffledOptions.forEach(option => {
-                const div = document.createElement('div');
-                div.className = 'option';
-                div.textContent = option;
-                div.onclick = () => selectOption(div);
-                optionsContainer.appendChild(div);
-            });
-        }
-
-        function selectOption(optionElement) {
-            const options = document.getElementsByClassName('option');
-            for (let option of options) {
-                option.classList.remove('selected');
-            }
-            optionElement.classList.add('selected');
-            selectedOption = optionElement;
-        }
-
-        function checkAnswer() {
-            if (!selectedOption) return;
-
-            const resultMessage = document.getElementById('resultMessage');
-            const isCorrect = selectedOption.textContent === currentWord.english;
-
-            if (isCorrect) {
-                score += 10;
-                selectedOption.classList.add('correct');
-                resultMessage.textContent = 'Doğru!';
-            } else {
-                selectedOption.classList.add('incorrect');
-                resultMessage.textContent = 'Yanlış! Doğru cevap: ' + currentWord.english;
-            }
-
-            document.getElementById('scoreValue').textContent = score;
-        }
-
-        // Ses butonu için event listener
-        document.getElementById('speakButton').onclick = () => {
-            if (currentWord) {
-                speak(currentWord.english);
-            }
+    // Yeni Buton Ekleme
+    function addTTSButton(word) {
+        const ttsButton = document.createElement('button');
+        ttsButton.textContent = '🔊';
+        ttsButton.style.marginLeft = '10px';
+        ttsButton.style.cursor = 'pointer';
+        ttsButton.title = 'Seslendir';
+        ttsButton.onclick = () => {
+            const language = direction === 'tr-en' ? 'en-US' : 'tr-TR';
+            speakText(word, language);
         };
+        return ttsButton;
+    }
+
+    function selectRandomWord() {
+        if (words.length === 0) return;
+
+        currentWord = words[Math.floor(Math.random() * words.length)];
+        const allWords = words.filter(w => w !== currentWord);
+        const options = [currentWord, ...allWords.sort(() => 0.5 - Math.random()).slice(0, 3)]
+            .sort(() => 0.5 - Math.random());
+
+        // Kelimeyi ve Seslendirme Butonunu Göster
+        const displayWord = direction === 'tr-en' ? currentWord.english : currentWord.turkish;
+        wordDisplay.textContent = displayWord;
+        const ttsButton = addTTSButton(displayWord);
+        wordDisplay.appendChild(ttsButton);
+
+        // Seçenekleri Yenile
+        optionsContainer.innerHTML = '';
+        options.forEach(word => {
+            const optionBtn = document.createElement('button');
+            optionBtn.classList.add('option');
+            optionBtn.textContent = direction === 'tr-en' ? word.turkish : word.english;
+            optionBtn.onclick = () => selectOption(optionBtn);
+            optionsContainer.appendChild(optionBtn);
+        });
+
+        resetState();
+    }
+
+    // Diğer Fonksiyonlar (Değiştirilmedi)
+    function selectOption(button) {
+        if (selectedOption) {
+            selectedOption.classList.remove('active');
+        }
+        
+        selectedOption = button;
+        selectedOption.classList.add('active');
+        checkButton.disabled = false;
+    }
+
+    function checkAnswer() {
+        if (!selectedOption) return;
+
+        const correctAnswer = direction === 'tr-en' 
+            ? currentWord.turkish 
+            : currentWord.english;
+
+        const isCorrect = selectedOption.textContent === correctAnswer;
+
+        if (isCorrect) {
+            selectedOption.classList.add('correct');
+            resultMessage.textContent = 'Bravo! 🎉 Doğru cevap!';
+            resultMessage.style.backgroundColor = '#dff0d8';
+            resultMessage.style.color = 'green';
+            score += 3;
+        } else {
+            selectedOption.classList.add('wrong');
+            resultMessage.textContent = `Üzgünüm, yanlış cevap. 😔 Doğru cevap: ${correctAnswer}`;
+            resultMessage.style.backgroundColor = '#f2dede';
+            resultMessage.style.color = 'red';
+            score = Math.max(0, score - 1);
+        }
+
+        scoreValueElement.textContent = score;
+        document.querySelectorAll('.option').forEach(btn => {
+            if (btn.textContent === correctAnswer) {
+                btn.classList.add('correct');
+            }
+        });
+
+        checkButton.disabled = true;
+    }
+
+    function resetState() {
+        selectedOption = null;
+        resultMessage.textContent = '';
+        resultMessage.style.backgroundColor = 'transparent';
+        resultMessage.style.color = 'black';
+        checkButton.disabled = true;
+        document.querySelectorAll('.option').forEach(btn => {
+            btn.classList.remove('correct', 'wrong', 'active');
+        });
+    }
+
+    function toggleDirection() {
+        direction = direction === 'tr-en' ? 'en-tr' : 'tr-en';
+        directionToggle.textContent = direction === 'tr-en' 
+            ? '🇹🇷 Türkçe → İngilizce' 
+            : '🇺🇸 İngilizce → Türkçe';
+        selectRandomWord();
+    }
+
+    directionToggle.onclick = toggleDirection;
+    checkButton.onclick = checkAnswer;
+    nextButton.onclick = selectRandomWord;
+
+    loadWords();
+</script>
+
     </script>
 </body>
 </html>
