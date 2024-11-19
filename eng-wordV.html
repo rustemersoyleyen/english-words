@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Kelime Oyunu</title>
+    <style>
+        .options {
+            margin: 20px 0;
+        }
+        .option {
+            margin: 10px 0;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        .option:hover {
+            background-color: #f0f0f0;
+        }
+        .correct {
+            background-color: #90EE90;
+        }
+        .incorrect {
+            background-color: #FFB6C6;
+        }
+        #speakButton {
+            background: none;
+            border: none;
+            cursor: pointer;
+            font-size: 24px;
+            vertical-align: middle;
+            margin-left: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div>
+        🇹🇷 Türkçe → İngilizce
+
+        <div>
+            Puan: <span id="scoreValue">0</span>
+        </div>
+
+        <div style="display: flex; align-items: center;">
+            <h2 id="wordDisplay" style="color: #4a90e2; margin-right: 10px;"></h2>
+            <button id="speakButton">🔊</button>
+        </div>
+
+        <div id="optionsContainer" class="options">
+        </div>
+
+        <div id="resultMessage"></div>
+
+        <button onclick="checkAnswer()">Kontrol Et</button>
+        <button onclick="displayWord()">Sonraki</button>
+    </div>
+
+    <script>
+        let words = [];
+        let currentWord;
+        let score = 0;
+        let selectedOption = null;
+
+        // Speech synthesis başlatma
+        const synth = window.speechSynthesis;
+
+        // JSON dosyasından kelimeleri yükle
+        fetch('words.json')
+            .then(response => response.json())
+            .then(data => {
+                words = data;
+                displayWord();
+            })
+            .catch(error => console.error('Kelimeler yüklenirken hata oluştu:', error));
+
+        function speak(text) {
+            // Önceki sesi durdur
+            synth.cancel();
+            
+            // Yeni sesi çal
+            const utterance = new SpeechSynthesisUtterance(text);
+            utterance.lang = 'en-US';
+            utterance.rate = 0.8;
+            synth.speak(utterance);
+        }
+
+        function getRandomWords(count) {
+            const shuffled = [...words].sort(() => 0.5 - Math.random());
+            return shuffled.slice(0, count);
+        }
+
+        function displayWord() {
+            const wordDisplay = document.getElementById('wordDisplay');
+            const optionsContainer = document.getElementById('optionsContainer');
+            const resultMessage = document.getElementById('resultMessage');
+            
+            resultMessage.innerHTML = '';
+            selectedOption = null;
+
+            const randomWords = getRandomWords(3);
+            currentWord = randomWords[0];
+            wordDisplay.textContent = currentWord.turkish;
+
+            const shuffledOptions = randomWords
+                .map(word => word.english)
+                .sort(() => 0.5 - Math.random());
+
+            optionsContainer.innerHTML = '';
+            shuffledOptions.forEach(option => {
+                const div = document.createElement('div');
+                div.className = 'option';
+                div.textContent = option;
+                div.onclick = () => selectOption(div);
+                optionsContainer.appendChild(div);
+            });
+        }
+
+        function selectOption(optionElement) {
+            const options = document.getElementsByClassName('option');
+            for (let option of options) {
+                option.classList.remove('selected');
+            }
+            optionElement.classList.add('selected');
+            selectedOption = optionElement;
+        }
+
+        function checkAnswer() {
+            if (!selectedOption) return;
+
+            const resultMessage = document.getElementById('resultMessage');
+            const isCorrect = selectedOption.textContent === currentWord.english;
+
+            if (isCorrect) {
+                score += 10;
+                selectedOption.classList.add('correct');
+                resultMessage.textContent = 'Doğru!';
+            } else {
+                selectedOption.classList.add('incorrect');
+                resultMessage.textContent = 'Yanlış! Doğru cevap: ' + currentWord.english;
+            }
+
+            document.getElementById('scoreValue').textContent = score;
+        }
+
+        // Ses butonu için event listener
+        document.getElementById('speakButton').onclick = () => {
+            if (currentWord) {
+                speak(currentWord.english);
+            }
+        };
+    </script>
+</body>
+</html>
