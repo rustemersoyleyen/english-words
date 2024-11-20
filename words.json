@@ -166,5 +166,349 @@
   {
     "english": "arrive at school",
     "turkish": "okula varmak"
+  },
+  {
+    "english": "wolf",
+    "turkish": "kurt"
+  },
+  {
+    "english": "bear",
+    "turkish": "ayı"
+  },
+  {
+    "english": "actress",
+    "turkish": "kadın oyuncu"
+  },
+  {
+    "english": "actor",
+    "turkish": "erkek oyuncu"
+  },
+  {
+    "english": "dolphin",
+    "turkish": "yunus balığı"
+  },
+  {
+    "english": "glass",
+    "turkish": "bardak"
+  },
+  {
+    "english": "tube",
+    "turkish": "tüp"
+  },
+  {
+    "english": "cheese",
+    "turkish": "peynir"
+  },
+  {
+    "english": "bread",
+    "turkish": "ekmek"
+  },
+  {
+    "english": "cookie",
+    "turkish": "çerez"
+  },
+  {
+    "english": "jar",
+    "turkish": "kavanoz"
+  },
+  {
+    "english": "leaf",
+    "turkish": "yaprak"
+  },
+  {
+    "english": "tree",
+    "turkish": "ağaç"
+  },
+  {
+    "english": "headache",
+    "turkish": "baş ağrısı"
+  },
+  {
+    "english": "horn",
+    "turkish": "boynuz"
+  },
+  {
+    "english": "Work",
+    "turkish": "Çalışmak"
+  },
+  {
+    "english": "Brush",
+    "turkish": "Fırçalamak"
+  },
+  {
+    "english": "Wear",
+    "turkish": "Giymek, takmak"
+  },
+  {
+    "english": "Meet",
+    "turkish": "Tanışmak, buluşmak"
+  },
+  {
+    "english": "Play",
+    "turkish": "Oynamak, çalmak (müzik aleti)"
+  },
+  {
+    "english": "Drink",
+    "turkish": "İçmek"
+  },
+  {
+    "english": "Get",
+    "turkish": "Almak, edinmek"
+  },
+  {
+    "english": "See",
+    "turkish": "Görmek"
+  },
+  {
+    "english": "Rise",
+    "turkish": "Yükselmek, doğmak (güneş)"
+  },
+  {
+    "english": "Tidy",
+    "turkish": "Toplamak, düzenlemek"
+  },
+  {
+    "english": "Like",
+    "turkish": "Beğenmek, hoşlanmak"
+  },
+  {
+    "english": "Collect",
+    "turkish": "Toplamak, biriktirmek"
+  },
+  {
+    "english": "Water",
+    "turkish": "Sulamak"
+  },
+  {
+    "english": "Listen",
+    "turkish": "Dinlemek"
+  },
+  {
+    "english": "Fly",
+    "turkish": "Uçmak"
+  },
+  {
+    "english": "Never",
+    "turkish": "Asla"
+  },
+  {
+    "english": "Often",
+    "turkish": "Sık sık"
+  },
+  {
+    "english": "In the evenings",
+    "turkish": "Akşamları"
+  },
+  {
+    "english": "Seldom",
+    "turkish": "Nadiren"
+  },
+  {
+    "english": "Usually",
+    "turkish": "Genellikle"
+  },
+  {
+    "english": "Twice a day",
+    "turkish": "Günde iki kez"
+  },
+  {
+    "english": "Always",
+    "turkish": "Her zaman"
+  },
+  {
+    "english": "Every morning",
+    "turkish": "Her sabah"
+  },
+  {
+    "english": "rhino",
+    "turkish": "gergedan"
+  },
+  {
+    "english": "curly",
+    "turkish": "kıvırcık"
+  },
+  {
+    "english": "climb",
+    "turkish": "tırmanmak"
+  },
+  {
+    "english": "mountain",
+    "turkish": "dağ"
+  },
+  {
+    "english": "fix",
+    "turkish": "tamir"
+  },
+  {
+    "english": "skate on ice",
+    "turkish": "buz pateni yapmak"
+  },
+  {
+    "english": "cousin",
+    "turkish": "kuzen"
+  },
+  {
+    "english": "intrument",
+    "turkish": "enstrüman"
+  },
+  {
+    "english": "cough",
+    "turkish": "öksürük"
+  },
+  {
+    "english": "root",
+    "turkish": "kök"
+  },
+  {
+    "english": "umbrella",
+    "turkish": "şemsiye"
+  },
+  {
+    "english": "flower",
+    "turkish": "çiçek"
+  },
+  {
+    "english": "cook",
+    "turkish": "yemek"
+  },
+  {
+    "english": "hat",
+    "turkish": "şapka"
+  },
+  {
+    "english": "practise",
+    "turkish": "pratik yapmak"
+  },
+  {
+    "english": "ride",
+    "turkish": "binmek"
+  },
+  {
+    "english": "cry",
+    "turkish": "çığlık"
+  },
+  {
+    "english": "buy",
+    "turkish": "satın almak"
+  },
+  {
+    "english": "enjoy",
+    "turkish": "hoşlanmak"
+  },
+  {
+    "english": "aunt",
+    "turkish": "hala/teyze"
+  },
+  {
+    "english": "deer",
+    "turkish": "geyik"
+  },
+  {
+    "english": "graffe",
+    "turkish": "zürafa"
+  },
+  {
+    "english": "journalist",
+    "turkish": "gazeteci"
+  },
+  {
+    "english": "sheep",
+    "turkish": "koyun"
+  },
+  {
+    "english": "politican",
+    "turkish": "politikacı"
+  },
+  {
+    "english": "egg",
+    "turkish": "yumurta"
+  },
+  {
+    "english": "eggplant",
+    "turkish": "patlıcan"
+  },
+  {
+    "english": "vegetable",
+    "turkish": "sebze"
+  },
+  {
+    "english": "talkative",
+    "turkish": "konuşkan"
+  },
+  {
+    "english": "quiet",
+    "turkish": "sessiz"
+  },
+  {
+    "english": "rose",
+    "turkish": "gül"
+  },
+  {
+    "english": "chief",
+    "turkish": "şef"
+  },
+  {
+    "english": "bush",
+    "turkish": "çalı"
+  },
+  {
+    "english": "butterfly",
+    "turkish": "kelebek"
+  },
+  {
+    "english": "roof",
+    "turkish": "çatı"
+  },
+  {
+    "english": "thief",
+    "turkish": "hırsız"
+  },
+  {
+    "english": "scarf",
+    "turkish": "atkı"
+  },
+  {
+    "english": "salt",
+    "turkish": "tuz"
+  },
+  {
+    "english": "salty",
+    "turkish": "tuzlu"
+  },
+  {
+    "english": "sweet",
+    "turkish": "tatlı"
+  },
+  {
+    "english": "husband",
+    "turkish": "erkek eş"
+  },
+  {
+    "english": "wife",
+    "turkish": "kadın eş"
+  },
+  {
+    "english": "expensive",
+    "turkish": "pahalı"
+  },
+  {
+    "english": "ring",
+    "turkish": "yüzük"
+  },
+  {
+    "english": "violin",
+    "turkish": "keman"
+  },
+  {
+    "english": "bee",
+    "turkish": "arı"
+  },
+  {
+    "english": "appoinment",
+    "turkish": "randevu"
+  },
+  {
+    "english": "dentist",
+    "turkish": "dişçi"
   }
 ]
