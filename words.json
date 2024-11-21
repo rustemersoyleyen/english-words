@@ -510,5 +510,97 @@
   {
     "english": "dentist",
     "turkish": "dişçi"
+  },
+  {
+    "english": "miss",
+    "turkish": "kaçırmak,özlemek"
+  },
+  {
+    "english": "try",
+    "turkish": "denemek"
+  },
+  {
+    "english": "sleep",
+    "turkish": "uyumak"
+  },
+  {
+    "english": "tell",
+    "turkish": "anlatmak"
+  },
+  {
+    "english": "wash up",
+    "turkish": "bulaşık yıkamak"
+  },
+  {
+    "english": "lose",
+    "turkish": "kaybetmek"
+  },
+  {
+    "english": "do",
+    "turkish": "yapmak"
+  },
+  {
+    "english": "go",
+    "turkish": "gitmek"
+  },
+  {
+    "english": "lie",
+    "turkish": "yatmak"
+  },
+  {
+    "english": "be",
+    "turkish": "olmak"
+  },
+  {
+    "english": "hide",
+    "turkish": "saklanmak"
+  },
+  {
+    "english": "pay",
+    "turkish": "ödemek"
+  },
+  {
+    "english": "carry",
+    "turkish": "taşımak"
+  },
+  {
+    "english": "stay",
+    "turkish": "kalmak"
+  },
+  {
+    "english": "sit",
+    "turkish": "oturmak"
+  },
+  {
+    "english": "push",
+    "turkish": "itmek"
+  },
+  {
+    "english": "eat",
+    "turkish": "yemek yemek"
+  },
+  {
+    "english": "draw",
+    "turkish": "çizmek"
+  },
+  {
+    "english": "finish",
+    "turkish": "bitirmek"
+  },
+  {
+    "english": "pass",
+    "turkish": "geçmek"
+  },
+  {
+    "english": "start",
+    "turkish": "başlamak"
+  },
+  {
+    "english": "hate",
+    "turkish": "nefret etmek"
+  },
+  {
+    "english": "dance",
+    "turkish": "dans etmek"
   }
 ]
