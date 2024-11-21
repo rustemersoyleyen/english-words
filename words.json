@@ -597,10 +597,22 @@
   },
   {
     "english": "hate",
-    "turkish": "nefret etmek"
+    "turkish": "nefretetmek"
   },
   {
     "english": "dance",
-    "turkish": "dans etmek"
+    "turkish": "dansetmek"
+  },
+  {
+    "english": "sometimes",
+    "turkish": "bazen"
+  },
+  {
+    "english": "rarely",
+    "turkish": "nadiren"
+  },
+  {
+    "english": "occasionally",
+    "turkish": "ara sıra"
   }
 ]
