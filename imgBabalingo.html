@@ -149,7 +149,7 @@
             // Kelimeyi ve görseli göster
             const displayWord = direction === 'tr-en' ? currentWord.english : currentWord.turkish;
             wordDisplay.textContent = displayWord;
-            wordImage.src = currentWord.image || 'placeholder.jpg'; // Placeholder görsel ekledik
+            wordImage.src ="images/" + currentWord.image || 'placeholder.jpg'; // Placeholder görsel ekledik
             const ttsButton = addTTSButton(displayWord);
             wordDisplay.appendChild(ttsButton);
 
