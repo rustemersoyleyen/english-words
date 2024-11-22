@@ -43,5 +43,195 @@
     "english": "cold",
     "turkish": "soğuk",
     "image": "cold.jpeg"
+  },
+  {
+    "english": "feeling",
+    "turkish": "duygu",
+    "image": "feeling.jpeg"
+  },
+  {
+    "english": "kitchen",
+    "turkish": "mutfak",
+    "image": "kitchen.jpeg"
+  },
+  {
+    "english": "living room",
+    "turkish": "oturma odası",
+    "image": "living room.jpeg"
+  },
+  {
+    "english": "bathroom",
+    "turkish": "banyo",
+    "image": "bathroom.jpeg"
+  },
+  {
+    "english": "toilet",
+    "turkish": "tuvalet",
+    "image": "toilet.jpeg"
+  },
+  {
+    "english": "bedroom",
+    "turkish": "yatak odası",
+    "image": "bedroom.jpeg"
+  },
+  {
+    "english": "calm room",
+    "turkish": "dinlenme odası",
+    "image": "calm room.jpeg"
+  },
+  {
+    "english": "house",
+    "turkish": "ev",
+    "image": "house.jpeg"
+  },
+  {
+    "english": "patio",
+    "turkish": "veranda, avlu",
+    "image": "patio.jpeg"
+  },
+  {
+    "english": "garden",
+    "turkish": "bahçe",
+    "image": "garden.jpeg"
+  },
+  {
+    "english": "balcony",
+    "turkish": "balkon",
+    "image": "balcony.jpeg"
+  },
+  {
+    "english": "before",
+    "turkish": "önce",
+    "image": "before.jpeg"
+  },
+  {
+    "english": "after",
+    "turkish": "sonra",
+    "image": "after.jpeg"
+  },
+  {
+    "english": "positive",
+    "turkish": "olumlu",
+    "image": "positive.jpeg"
+  },
+  {
+    "english": "negative",
+    "turkish": "olumsuz",
+    "image": "negative.jpeg"
+  },
+  {
+    "english": "important",
+    "turkish": "önemli",
+    "image": "important.jpeg"
+  },
+  {
+    "english": "easy",
+    "turkish": "kolay",
+    "image": "easy.jpeg"
+  },
+  {
+    "english": "breathe",
+    "turkish": "nefes almak",
+    "image": "breathe.jpeg"
+  },
+  {
+    "english": "deeply",
+    "turkish": "derin bir şekilde",
+    "image": "deeply.jpeg"
+  },
+  {
+    "english": "rip up",
+    "turkish": "yırtmak",
+    "image": "rip up.jpeg"
+  },
+  {
+    "english": "paper",
+    "turkish": "kağıt",
+    "image": "paper.jpeg"
+  },
+  {
+    "english": "share",
+    "turkish": "paylaşmak",
+    "image": "share.jpeg"
+  },
+  {
+    "english": "shout",
+    "turkish": "bağırmak",
+    "image": "shout.jpeg"
+  },
+  {
+    "english": "recycle",
+    "turkish": "geri dönüştürmek",
+    "image": "recycle.jpeg"
+  },
+  {
+    "english": "manage",
+    "turkish": "yönetmek",
+    "image": "manage.jpeg"
+  },
+  {
+    "english": "probably",
+    "turkish": "muhtemelen",
+    "image": "probably.jpeg"
+  },
+  {
+    "english": "think of",
+    "turkish": "düşünmek",
+    "image": "think of.jpeg"
+  },
+  {
+    "english": "example",
+    "turkish": "örnek",
+    "image": "example.jpeg"
+  },
+  {
+    "english": "manner",
+    "turkish": "davranış",
+    "image": "manner.jpeg"
+  },
+  {
+    "english": "culture",
+    "turkish": "kültür",
+    "image": "culture.jpeg"
+  },
+  {
+    "english": "situation",
+    "turkish": "durum",
+    "image": "situation.jpeg"
+  },
+  {
+    "english": "rat",
+    "turkish": "fare, sıçan",
+    "image": "rat.jpeg"
+  },
+  {
+    "english": "water bottle",
+    "turkish": "su şişesi",
+    "image": "water bottle.jpeg"
+  },
+  {
+    "english": "torch",
+    "turkish": "fener",
+    "image": "torch.jpeg"
+  },
+  {
+    "english": "map",
+    "turkish": "harita",
+    "image": "map.jpeg"
+  },
+  {
+    "english": "storm",
+    "turkish": "fırtına",
+    "image": "storm.jpeg"
+  },
+  {
+    "english": "bubble wrap",
+    "turkish": "balonlu naylon",
+    "image": "bubble wrap.jpeg"
+  },
+  {
+    "english": "pop",
+    "turkish": "patlatmak",
+    "image": "pop.jpeg"
   }
 ]
