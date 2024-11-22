@@ -1,0 +1,47 @@
+[
+  {
+    "english": "sad",
+    "turkish": "üzgün",
+    "image": "sad.jpeg"
+  },
+  {
+    "english": "happy",
+    "turkish": "mutlu",
+    "image": "happy.jpeg"
+  },
+  {
+    "english": "nervous",
+    "turkish": "gergin",
+    "image": "nervous"
+  },
+  {
+    "english": "tired",
+    "turkish": "yorgun",
+    "image": "tired"
+  },
+  {
+    "english": "hungry",
+    "turkish": "aç",
+    "image": "hungry.jpeg"
+  },
+  {
+    "english": "angry",
+    "turkish": "sinirli",
+    "image": "angry.jpeg"
+  },
+  {
+    "english": "bored",
+    "turkish": "sıkılmış",
+    "image": "bored.jpeg"
+  },
+  {
+    "english": "hot",
+    "turkish": "sıcak",
+    "image": "hot.jpeg"
+  },
+  {
+    "english": "cold",
+    "turkish": "soğuk",
+    "image": "cold.jpeg"
+  }
+]
