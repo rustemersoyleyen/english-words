@@ -233,5 +233,195 @@
     "english": "pop",
     "turkish": "patlatmak",
     "image": "pop.jpeg"
+  },
+  {
+    "english": "listen to music",
+    "turkish": "müzik dinlemek",
+    "image": "listen to music.jpeg"
+  },
+  {
+    "english": "go to sleep",
+    "turkish": "uyumaya gitmek",
+    "image": "go to sleep.jpeg"
+  },
+  {
+    "english": "fall asleep",
+    "turkish": "uyuyakalmak",
+    "image": "fall asleep.jpeg"
+  },
+  {
+    "english": "finish school",
+    "turkish": "okulu bitirmek",
+    "image": "finish school.jpeg"
+  },
+  {
+    "english": "start school",
+    "turkish": "okula başlamak",
+    "image": "start school.jpeg"
+  },
+  {
+    "english": "do homework",
+    "turkish": "ödev yapmak",
+    "image": "do homework.jpeg"
+  },
+  {
+    "english": "do housework",
+    "turkish": "ev işi yapmak",
+    "image": "do housework.jpeg"
+  },
+  {
+    "english": "come back home",
+    "turkish": "eve geri dönmek",
+    "image": "come back home.jpeg"
+  },
+  {
+    "english": "help my mother at home",
+    "turkish": "evde anneme yardım etmek",
+    "image": "help my mother at home.jpeg"
+  },
+  {
+    "english": "have lunch",
+    "turkish": "öğle yemeği yemek",
+    "image": "have lunch.jpeg"
+  },
+  {
+    "english": "have dinner",
+    "turkish": "akşam yemeği yemek",
+    "image": "have dinner.jpeg"
+  },
+  {
+    "english": "have breakfast",
+    "turkish": "kahvaltı yapmak",
+    "image": "have breakfast.jpeg"
+  },
+  {
+    "english": "talk on the phone",
+    "turkish": "telefonda konuşmak",
+    "image": "talk on the phone.jpeg"
+  },
+  {
+    "english": "work on the computer",
+    "turkish": "bilgisayarda çalışmak",
+    "image": "work on the computer.jpeg"
+  },
+  {
+    "english": "feed the cat",
+    "turkish": "kediyi beslemek",
+    "image": "feed the cat.jpeg"
+  },
+  {
+    "english": "feed the dog",
+    "turkish": "köpeği beslemek",
+    "image": "feed the dog.jpeg"
+  },
+  {
+    "english": "read",
+    "turkish": "okumak",
+    "image": "read.jpeg"
+  },
+  {
+    "english": "write",
+    "turkish": "yazmak",
+    "image": "write.jpeg"
+  },
+  {
+    "english": "walk",
+    "turkish": "yürümek",
+    "image": "walk.jpeg"
+  },
+  {
+    "english": "talk",
+    "turkish": "konuşmak",
+    "image": "talk.jpeg"
+  },
+  {
+    "english": "walk the dog",
+    "turkish": "köpeği gezdirmek",
+    "image": "walk the dog.jpeg"
+  },
+  {
+    "english": "watch",
+    "turkish": "izlemek",
+    "image": "watch.jpeg"
+  },
+  {
+    "english": "watch TV",
+    "turkish": "televizyon izlemek",
+    "image": "watch TV.jpeg"
+  },
+  {
+    "english": "get undressed",
+    "turkish": "üstünü çıkarmak",
+    "image": "get undressed.jpeg"
+  },
+  {
+    "english": "get dressed",
+    "turkish": "giyinmek",
+    "image": "get dressed.jpeg"
+  },
+  {
+    "english": "go to bed",
+    "turkish": "yatağa gitmek",
+    "image": "go to bed.jpeg"
+  },
+  {
+    "english": "say the prayers",
+    "turkish": "dua etmek",
+    "image": "say the prayers.jpeg"
+  },
+  {
+    "english": "wake up",
+    "turkish": "uyanmak",
+    "image": "wake up.jpeg"
+  },
+  {
+    "english": "get up",
+    "turkish": "yataktan kalkmak",
+    "image": "get up.jpeg"
+  },
+  {
+    "english": "put the shoes on",
+    "turkish": "ayakkabı giymek",
+    "image": "put the shoes on.jpeg"
+  },
+  {
+    "english": "have a shower",
+    "turkish": "duş almak",
+    "image": "have a shower.jpeg"
+  },
+  {
+    "english": "go to the bathroom",
+    "turkish": "banyoya gitmek",
+    "image": "go to the bathroom.jpeg"
+  },
+  {
+    "english": "brush my teeth",
+    "turkish": "dişlerimi fırçalamak",
+    "image": "brush my teeth.jpeg"
+  },
+  {
+    "english": "comb my hair",
+    "turkish": "saçlarımı taramak",
+    "image": "comb my hair.jpeg"
+  },
+  {
+    "english": "make the bed",
+    "turkish": "yatağı toplamak",
+    "image": "make the bed.jpeg"
+  },
+  {
+    "english": "go to school",
+    "turkish": "okula gitmek",
+    "image": "go to school.jpeg"
+  },
+  {
+    "english": "leave home",
+    "turkish": "evden çıkmak",
+    "image": "leave home.jpeg"
+  },
+  {
+    "english": "arrive at school",
+    "turkish": "okula varmak",
+    "image": "arrive at school.jpeg"
   }
 ]
