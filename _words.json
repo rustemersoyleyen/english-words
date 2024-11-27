@@ -1,0 +1,247 @@
+[
+  {
+    "english": "Bakery",
+    "turkish": "Fırın",
+    "image": "bakery.jpeg"
+  },
+  {
+    "english": "Toy shop",
+    "turkish": "Oyuncak mağazası",
+    "image": "toy_shop.jpeg"
+  },
+  {
+    "english": "School",
+    "turkish": "Okul",
+    "image": "school.jpeg"
+  },
+  {
+    "english": "Cinema",
+    "turkish": "Sinema",
+    "image": "cinema.jpeg"
+  },
+  {
+    "english": "Barbershop",
+    "turkish": "Berber dükkanı",
+    "image": "barbershop.jpeg"
+  },
+  {
+    "english": "Bus stop",
+    "turkish": "Otobüs durağı",
+    "image": "bus_stop.jpeg"
+  },
+  {
+    "english": "Pharmacy",
+    "turkish": "Eczane",
+    "image": "pharmacy.jpeg"
+  },
+  {
+    "english": "Mosque",
+    "turkish": "Cami",
+    "image": "mosque.jpeg"
+  },
+  {
+    "english": "Library",
+    "turkish": "Kütüphane",
+    "image": "library.jpeg"
+  },
+  {
+    "english": "Bookshop",
+    "turkish": "Kitapçı",
+    "image": "bookshop.jpeg"
+  },
+  {
+    "english": "Pool",
+    "turkish": "Havuz",
+    "image": "pool.jpeg"
+  },
+  {
+    "english": "Grocery",
+    "turkish": "Bakkal / Market",
+    "image": "grocery.jpeg"
+  },
+  {
+    "english": "Butcher's",
+    "turkish": "Kasap",
+    "image": "butchers.jpeg"
+  },
+  {
+    "english": "Hospital",
+    "turkish": "Hastane",
+    "image": "hospital.jpeg"
+  },
+  {
+    "english": "Museum",
+    "turkish": "Müze",
+    "image": "museum.jpeg"
+  },
+  {
+    "english": "Fire station",
+    "turkish": "İtfaiye istasyonu",
+    "image": "fire_station.jpeg"
+  },
+  {
+    "english": "Town",
+    "turkish": "Şehir, kasaba",
+    "image": "town.jpeg"
+  },
+  {
+    "english": "Neighborhood",
+    "turkish": "Mahalle, muhit",
+    "image": "neighborhood.jpeg"
+  },
+  {
+    "english": "Location",
+    "turkish": "Konum",
+    "image": "location.jpeg"
+  },
+  {
+    "english": "Street",
+    "turkish": "Cadde",
+    "image": "street.jpeg"
+  },
+  {
+    "english": "Easy",
+    "turkish": "Kolay",
+    "image": "easy.jpeg"
+  },
+  {
+    "english": "Go to / Get to",
+    "turkish": "Gitmek",
+    "image": "go_to_get_to.jpeg"
+  },
+  {
+    "english": "Sometimes",
+    "turkish": "Bazen",
+    "image": "sometimes.jpeg"
+  },
+  {
+    "english": "Road",
+    "turkish": "Yol",
+    "image": "road.jpeg"
+  },
+  {
+    "english": "Map",
+    "turkish": "Harita",
+    "image": "map.jpeg"
+  },
+  {
+    "english": "Far away",
+    "turkish": "Uzak",
+    "image": "far_away.jpeg"
+  },
+  {
+    "english": "Near",
+    "turkish": "Yakın",
+    "image": "near.jpeg"
+  },
+  {
+    "english": "Get medicine",
+    "turkish": "İlaç almak",
+    "image": "get_medicine.jpeg"
+  },
+  {
+    "english": "Buy toys",
+    "turkish": "Oyuncaklar almak",
+    "image": "buy_toys.jpeg"
+  },
+  {
+    "english": "Buy some bread",
+    "turkish": "Biraz ekmek almak",
+    "image": "buy_some_bread.jpeg"
+  },
+  {
+    "english": "Listen to your teacher",
+    "turkish": "Öğretmenini dinlemek",
+    "image": "listen_to_your_teacher.jpeg"
+  },
+  {
+    "english": "Wait for the bus",
+    "turkish": "Otobüs beklemek",
+    "image": "wait_for_the_bus.jpeg"
+  },
+  {
+    "english": "Read a book",
+    "turkish": "Kitap okumak",
+    "image": "read_a_book.jpeg"
+  },
+  {
+    "english": "Swim",
+    "turkish": "Yüzmek",
+    "image": "swim.jpeg"
+  },
+  {
+    "english": "Watch a film",
+    "turkish": "Film izlemek",
+    "image": "watch_a_film.jpeg"
+  },
+  {
+    "english": "Draw a map",
+    "turkish": "Harita çizmek",
+    "image": "draw_a_map.jpeg"
+  },
+  {
+    "english": "Bank",
+    "turkish": "Banka",
+    "image": "bank.jpeg"
+  },
+  {
+    "english": "Train station",
+    "turkish": "Tren istasyonu",
+    "image": "train_station.jpeg"
+  },
+  {
+    "english": "Post office",
+    "turkish": "Postane",
+    "image": "post_office.jpeg"
+  },
+  {
+    "english": "Zoo",
+    "turkish": "Hayvanat bahçesi",
+    "image": "zoo.jpeg"
+  },
+  {
+    "english": "Police station",
+    "turkish": "Polis merkezi",
+    "image": "police_station.jpeg"
+  },
+  {
+    "english": "Playground",
+    "turkish": "Oyun parkı",
+    "image": "playground.jpeg"
+  },
+  {
+    "english": "Stationer’s",
+    "turkish": "Kırtasiye dükkânı",
+    "image": "stationers.jpeg"
+  },
+  {
+    "english": "Stadium",
+    "turkish": "Stadyum",
+    "image": "stadium.jpeg"
+  },
+  {
+    "english": "Theater",
+    "turkish": "Tiyatro",
+    "image": "theater.jpeg"
+  },
+  {
+    "english": "Restaurant",
+    "turkish": "Restoran",
+    "image": "restaurant.jpeg"
+  },
+  {
+    "english": "Shopping center/mall",
+    "turkish": "Alışveriş merkezi",
+    "image": "shopping_center_mall.jpeg"
+  },
+  {
+    "english": "Shoe shop",
+    "turkish": "Ayakkabı dükkânı",
+    "image": "shoe_shop.jpeg"
+  },
+  {
+    "english": "Cafe",
+    "turkish": "Kafe",
+    "image": "cafe.jpeg"
+  }
+]
