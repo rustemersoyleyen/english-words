@@ -1,0 +1,20 @@
+[
+    {
+        "name": "Günlük Hayat",
+        "level": "Başlangıç",
+        "words": [
+            {"turkish": "ev", "english": "house", "image": "house.jpg"},
+            {"turkish": "araba", "english": "car", "image": "car.jpg"},
+            {"turkish": "okul", "english": "school", "image": "school.jpg"}
+        ]
+    },
+    {
+        "name": "Yiyecekler",
+        "level": "Orta", 
+        "words": [
+            {"turkish": "elma", "english": "apple", "image": "apple.jpg"},
+            {"turkish": "ekmek", "english": "bread", "image": "bread.jpg"},
+            {"turkish": "su", "english": "water", "image": "water.jpg"}
+        ]
+    }
+]
