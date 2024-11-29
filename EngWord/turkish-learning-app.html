@@ -198,8 +198,9 @@ h2 {
             exerciseType = 'multiple-choice';
 
         async function loadUnits() {
-            try {
+            try {               
                 const response = await fetch('w.json');
+                if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
                 units = await response.json();
                 renderUnitButtons();
             } catch (error) {
