@@ -1,0 +1,418 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <title>Kelime Öğrenme Uygulaması</title>
+    <style>
+        body { 
+            font-family: 'Comic Sans MS', cursive; 
+            max-width: 600px; 
+            margin: 0 auto; 
+            padding: 20px; 
+            text-align: center; 
+            background-color: #f0f4f8;
+        }
+        .unit-selection {
+            background-color: #ffffff;
+            border-radius: 15px;
+            padding: 20px;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+        .unit-buttons { 
+            display: grid; 
+            grid-template-columns: 1fr 1fr; 
+            gap: 15px; 
+        }
+        .unit-button {
+            padding: 15px;
+            background-color: #ffffff;
+            border: 3px solid #4a90e2;
+            border-radius: 15px;
+            cursor: pointer;
+            font-weight: bold;
+            color: #4a90e2;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+        .unit-button:hover { 
+            transform: scale(1.05); 
+            background-color: #e6f2ff; 
+        }
+        .unit-button.selected {
+            border-color: #ffd700;
+            background-color: #fffde7;
+            box-shadow: 0 0 10px rgba(255,215,0,0.5);
+        }
+        .wordContainer {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 20px;
+            margin: 20px 0;
+        }
+        .wordImage {
+            width: 150px;
+            height: 150px;
+            object-fit: cover;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+        .options { 
+            display: grid; 
+            grid-template-columns: 1fr 1fr; 
+            gap: 15px; 
+        }
+        .option {
+            padding: 15px;
+            background-color: #ffffff;
+            border: 3px solid #4a90e2;
+            border-radius: 15px;
+            cursor: pointer;
+            font-weight: bold;
+            color: #4a90e2;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+        .option:hover { 
+            transform: scale(1.05); 
+            background-color: #e6f2ff; 
+        }
+        .option.active {
+            border-color: #ffd700;
+            background-color: #fffde7;
+            box-shadow: 0 0 10px rgba(255,215,0,0.5);
+        }
+        .option.correct { 
+            background-color: #4CAF50; 
+            color: white; 
+            border-color: #45a049;
+        }
+        .option.wrong { 
+            background-color: #f44336; 
+            color: white; 
+            border-color: #d32f2f;
+        }
+        #resultMessage { 
+            margin-top: 15px; 
+            font-weight: bold; 
+            font-size: 18px;
+            padding: 10px;
+            border-radius: 10px;
+        }
+        #exerciseType, #wordInput {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 2px solid #4a90e2;
+            border-radius: 10px;
+        }
+        button {
+            margin: 10px;
+            padding: 10px 20px;
+            border-radius: 20px;
+            border: none;
+            background-color: #4a90e2;
+            color: white;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        button:hover {
+            background-color: #357abd;
+        }
+        button:disabled {
+            background-color: #cccccc;
+            cursor: not-allowed;
+        }
+        .game-container {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div id="unitSelection" class="unit-selection">
+        <h2>Ünite Seçin</h2>
+        <div id="unitButtons" class="unit-buttons"></div>
+        
+        <h2>Egzersiz Türü Seçin</h2>
+        <select id="exerciseType">
+            <option value="multiple-choice">Çoktan Seçmeli</option>
+            <option value="writing">Yazma</option>
+        </select>
+        
+        <button id="startExercise">Egzersizi Başlat</button>
+    </div>
+
+    <div id="gameContainer" class="game-container">
+        <button id="directionToggle">🇹🇷 Türkçe → İngilizce</button>
+        <div>Puan: <span id="scoreValue">0</span></div>
+        <div class="wordContainer">
+            <img id="wordImage" class="wordImage" src="" alt="Kelime görseli">
+        </div>
+        <h2 id="wordDisplay" style="color: #4a90e2;"></h2>
+        
+        <div id="optionsContainer" class="options"></div>
+        
+        <div id="resultMessage"></div>
+        
+        <button id="checkButton" disabled>Kontrol Et</button>
+        <button id="nextButton">Sonraki</button>
+    </div>
+
+    <script>
+        // Global Variables
+        let words = [];
+        let units = [];
+        let currentWord, direction = 'tr-en', score = 0, selectedOption = null;
+        let currentUnit = null;
+        let exerciseType = 'multiple-choice';
+        let audioContext = null;
+
+        // DOM Elements
+        const unitSelection = document.getElementById('unitSelection');
+        const gameContainer = document.getElementById('gameContainer');
+        const unitButtons = document.getElementById('unitButtons');
+        const exerciseTypeSelect = document.getElementById('exerciseType');
+        const startExerciseButton = document.getElementById('startExercise');
+
+        const directionToggle = document.getElementById('directionToggle');
+        const scoreValueElement = document.getElementById('scoreValue');
+        const wordDisplay = document.getElementById('wordDisplay');
+        const wordImage = document.getElementById('wordImage');
+
+        const optionsContainer = document.getElementById('optionsContainer');
+        const resultMessage = document.getElementById('resultMessage');
+        const checkButton = document.getElementById('checkButton');
+        const nextButton = document.getElementById('nextButton');
+
+        // Sound Generation Functions
+        function createAudioContext() {
+            if (!audioContext) {
+                audioContext = new (window.AudioContext || window.webkitAudioContext)();
+            }
+        }
+
+        function playSuccessSound() {
+            createAudioContext();
+            const oscillator = audioContext.createOscillator();
+            const gainNode = audioContext.createGain();
+
+            oscillator.type = 'triangle';
+            oscillator.frequency.setValueAtTime(880, audioContext.currentTime);
+            gainNode.gain.setValueAtTime(0.5, audioContext.currentTime);
+
+            oscillator.connect(gainNode);
+            gainNode.connect(audioContext.destination);
+
+            oscillator.start();
+            gainNode.gain.exponentialRampToValueAtTime(0.001, audioContext.currentTime + 0.5);
+            oscillator.stop(audioContext.currentTime + 0.5);
+        }
+
+        function playErrorSound() {
+            createAudioContext();
+            const oscillator = audioContext.createOscillator();
+            const gainNode = audioContext.createGain();
+
+            oscillator.type = 'sawtooth';
+            oscillator.frequency.setValueAtTime(220, audioContext.currentTime);
+            gainNode.gain.setValueAtTime(0.5, audioContext.currentTime);
+
+            oscillator.connect(gainNode);
+            gainNode.connect(audioContext.destination);
+
+            oscillator.start();
+            gainNode.gain.exponentialRampToValueAtTime(0.001, audioContext.currentTime + 0.3);
+            oscillator.stop(audioContext.currentTime + 0.3);
+        }
+
+        // TTS Fonksiyonu
+        function speakText(text, language) {
+            const utterance = new SpeechSynthesisUtterance(text);
+            utterance.lang = language;
+            utterance.rate = 0.8;
+            window.speechSynthesis.speak(utterance);
+        }
+
+        // Yeni Buton Ekleme
+        function addTTSButton(word) {
+            const ttsButton = document.createElement('button');
+            ttsButton.textContent = '🔊';
+            ttsButton.style.marginLeft = '10px';
+            ttsButton.style.cursor = 'pointer';
+            ttsButton.title = 'Seslendir';
+            ttsButton.onclick = () => {
+                const language = direction === 'tr-en' ? 'en-US' : 'tr-TR';
+                speakText(word, language);
+            };
+            return ttsButton;
+        }
+
+        // Ünite Seçim Fonksiyonları
+        function loadUnits() {
+            units = [
+                {
+                    "name": "Günlük Hayat",
+                    "level": "Başlangıç",
+                    "words": [
+                        {"turkish": "ev", "english": "house", "image": "house.jpg"},
+                        {"turkish": "araba", "english": "car", "image": "car.jpg"},
+                        {"turkish": "okul", "english": "school", "image": "school.jpg"}
+                    ]
+                },
+                {
+                    "name": "Yiyecekler",
+                    "level": "Orta",
+                    "words": [
+                        {"turkish": "elma", "english": "apple", "image": "apple.jpg"},
+                        {"turkish": "ekmek", "english": "bread", "image": "bread.jpg"},
+                        {"turkish": "su", "english": "water", "image": "water.jpg"}
+                    ]
+                }
+            ];
+            renderUnitButtons();
+        }
+
+        function renderUnitButtons() {
+            unitButtons.innerHTML = '';
+            units.forEach((unit, index) => {
+                const button = document.createElement('button');
+                button.textContent = `${unit.name} (${unit.level})`;
+                button.classList.add('unit-button');
+                button.onclick = () => selectUnit(index);
+                unitButtons.appendChild(button);
+            });
+        }
+
+        function selectUnit(index) {
+            const prevSelected = document.querySelector('.unit-button.selected');
+            if (prevSelected) prevSelected.classList.remove('selected');
+            
+            const selectedButton = unitButtons.children[index];
+            selectedButton.classList.add('selected');
+            currentUnit = units[index];
+            words = currentUnit.words;
+        }
+
+        function startExercise() {
+            if (!currentUnit) {
+                alert('Lütfen bir ünite seçin');
+                return;
+            }
+
+            exerciseType = exerciseTypeSelect.value;
+            unitSelection.style.display = 'none';
+            gameContainer.style.display = 'block';
+
+            selectRandomWord();
+        }
+
+        function selectRandomWord() {
+            if (words.length === 0) return;
+
+            currentWord = words[Math.floor(Math.random() * words.length)];
+            const allWords = words.filter(w => w !== currentWord);
+            
+            const displayWord = direction === 'tr-en' ? currentWord.english : currentWord.turkish;
+            wordDisplay.textContent = displayWord;
+            wordImage.src = "images/" + (currentWord.image || 'placeholder.jpg');
+            
+            const ttsButton = addTTSButton(displayWord);
+            wordDisplay.appendChild(ttsButton);
+
+            if (exerciseType === 'multiple-choice') {
+                createMultipleChoiceMode();
+            } else if (exerciseType === 'writing') {
+                createWritingMode();
+            }
+
+            resetState();
+        }
+
+        function createMultipleChoiceMode() {
+            const allWords = words.filter(w => w !== currentWord);
+            const options = [currentWord, ...allWords.sort(() => 0.5 - Math.random()).slice(0, 3)]
+                .sort(() => 0.5 - Math.random());
+
+            optionsContainer.innerHTML = '';
+            options.forEach(word => {
+                const optionBtn = document.createElement('button');
+                optionBtn.classList.add('option');
+                optionBtn.textContent = direction === 'tr-en' ? word.turkish : word.english;
+                optionBtn.onclick = () => selectOption(optionBtn);
+                optionsContainer.appendChild(optionBtn);
+            });
+        }
+
+        function createWritingMode() {
+            optionsContainer.innerHTML = `
+                <input type="text" id="wordInput" placeholder="Kelimeyi yazın">
+            `;
+            
+            const input = document.getElementById('wordInput');
+            input.focus();
+        }
+
+        function selectOption(button) {
+            if (selectedOption) {
+                selectedOption.classList.remove('active');
+            }
+            
+            selectedOption = button;
+            selectedOption.classList.add('active');
+            checkButton.disabled = false;
+        }
+
+        function checkAnswer() {
+            const correctAnswer = direction === 'tr-en' 
+                ? currentWord.turkish 
+                : currentWord.english;
+
+            let isCorrect = false;
+
+            if (exerciseType === 'multiple-choice') {
+                isCorrect = selectedOption.textContent === correctAnswer;
+            } else if (exerciseType === 'writing') {
+                const userAnswer = document.getElementById('wordInput').value.trim().toLowerCase();
+                isCorrect = userAnswer === correctAnswer.toLowerCase();
+            }
+
+            if (isCorrect) {
+                playSuccessSound();
+                resultMessage.textContent = 'Bravo! 🎉 Doğru cevap!';
+                resultMessage.style.backgroundColor = '#dff0d8';
+                resultMessage.style.color = 'green';
+                score += 3;
+            } else {
+                playErrorSound();
+                resultMessage.textContent = `Üzgünüm, yanlış cevap. 😔 Doğru cevap: ${correctAnswer}`;
+                resultMessage.style.backgroundColor = '#f2dede';
+                resultMessage.style.color = 'red';
+                score = Math.max(0, score - 1);
+            }
+
+            scoreValueElement.textContent = score;
+            checkButton.disabled = true;
+        }
+
+        function resetState() {
+            selectedOption = null;
+            resultMessage.textContent = '';
+            resultMessage.style.backgroundColor = 'transparent';
+            resultMessage.style.color = 'black';
+            checkButton.disabled = true;
+            
+            if (exerciseType === 'multiple-choice') {
+                document.querySelectorAll('.option').forEach(btn => {
+                    btn.classList.remove('correct', 'wrong', 'active');
+                });
+            } else if (exerciseType === 'writing') {
+                const input = document.getElementById('wordInput');
+                if (input) input.value = '';
+            }
+        }
+
+        function toggleDirection() {
+            direction = direction === 'tr-en' ? 'en-tr' : 'tr-en';
+            directionToggle.textContent = direction ===
