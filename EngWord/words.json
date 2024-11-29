@@ -6,285 +6,294 @@
                 {
                     "turkish": "kalkmak",
                     "english": "get up",
-                    "image": "get_up.jpeg",
-                    "difficulty": "kolay"
+                    "image": "get_up.jpeg"
+                    
                 },
                 {
                     "turkish": "giyinmek",
                     "english": "get dressed",
-                    "image": "get_dressed.jpeg",
-                    "difficulty": "kolay"
+                    "image": "get_dressed.jpeg"
+                    
                 },
                 {
                     "turkish": "kahvaltı yapmak",
                     "english": "have breakfast",
-                    "image": "have_breakfast.jpeg",
-                    "difficulty": "kolay"
+                    "image": "have_breakfast.jpeg"
+                    
                 },
                 {
                     "turkish": "okula gitmek",
                     "english": "go to school",
-                    "image": "go_to_school.jpeg",
-                    "difficulty": "kolay"
+                    "image": "go_to_school.jpeg"
+                    
                 },
                 {
                     "turkish": "öğle yemeği yemek",
                     "english": "have lunch",
-                    "image": "have_lunch.jpeg",
-                    "difficulty": "kolay"
+                    "image": "have_lunch.jpeg"
+                    
                 },
                 {
                     "turkish": "ödev yapmak",
                     "english": "do homework",
-                    "image": "do_homework.jpeg",
-                    "difficulty": "kolay"
+                    "image": "do_homework.jpeg"
+                    
                 },
                 {
                     "turkish": "akşam yemeği yemek",
                     "english": "have dinner",
-                    "image": "have_dinner.jpeg",
-                    "difficulty": "kolay"
+                    "image": "have_dinner.jpeg"
+                    
                 },
                 {
                     "turkish": "yatmak",
                     "english": "go to bed",
-                    "image": "go_to_bed.jpeg",
-                    "difficulty": "kolay"
+                    "image": "go_to_bed.jpeg"
+                    
                 },
                 {
                     "turkish": "hamburger",
                     "english": "burger",
-                    "image": "burger.jpeg",
-                    "difficulty": "kolay"
+                    "image": "burger.jpeg"
+                    
                 },
                 {
                     "turkish": "patates kızartması",
                     "english": "chips",
-                    "image": "chips.jpeg",
-                    "difficulty": "kolay"
+                    "image": "chips.jpeg"
+                    
                 },
                 {
                     "turkish": "tavuk",
                     "english": "chicken",
-                    "image": "chicken.jpeg",
-                    "difficulty": "kolay"
+                    "image": "chicken.jpeg"
+                    
                 },
                 {
                     "turkish": "sosisli sandviç",
                     "english": "hot dog",
-                    "image": "hot_dog.jpeg",
-                    "difficulty": "kolay"
+                    "image": "hot_dog.jpeg"
+                    
                 },
                 {
                     "turkish": "dondurma",
                     "english": "ice cream",
-                    "image": "ice_cream.jpeg",
-                    "difficulty": "kolay"
+                    "image": "ice_cream.jpeg"
+                    
                 },
                 {
                     "turkish": "meyve suyu",
                     "english": "juice",
-                    "image": "juice.jpeg",
-                    "difficulty": "kolay"
+                    "image": "juice.jpeg"
+                    
                 },
                 {
                     "turkish": "süt",
                     "english": "milk",
-                    "image": "milk.jpeg",
-                    "difficulty": "kolay"
+                    "image": "milk.jpeg"
+                    
                 },
                 {
                     "turkish": "pizza",
                     "english": "pizza",
-                    "image": "pizza.jpeg",
-                    "difficulty": "kolay"
+                    "image": "pizza.jpeg"
+                    
                 },
                 {
                     "turkish": "pilav",
                     "english": "rice",
-                    "image": "rice.jpeg",
-                    "difficulty": "kolay"
+                    "image": "rice.jpeg"
+                    
                 },
                 {
                     "turkish": "salata",
                     "english": "salad",
-                    "image": "salad.jpeg",
-                    "difficulty": "kolay"
+                    "image": "salad.jpeg"
+                    
                 },
                 {
                     "turkish": "biftek, et",
                     "english": "steak",
-                    "image": "steak.jpeg",
-                    "difficulty": "kolay"
+                    "image": "steak.jpeg"
+                    
                 },
                 {
                     "turkish": "domates",
                     "english": "tomatoes",
-                    "image": "tomatoes.jpeg",
-                    "difficulty": "kolay"
+                    "image": "tomatoes.jpeg"
+                    
                 },
                 {
                     "turkish": "su",
                     "english": "water",
-                    "image": "water.jpeg",
-                    "difficulty": "kolay"
+                    "image": "water.jpeg"
+                    
                 },
                 {
                     "turkish": "hafta",
                     "english": "week",
-                    "image": "week.jpeg",
-                    "difficulty": "kolay"
+                    "image": "week.jpeg"
+                    
                 },
                 {
                     "turkish": "haftanın günleri",
                     "english": "days of the week",
-                    "image": "days_of_the_week.jpeg",
-                    "difficulty": "kolay"
+                    "image": "days_of_the_week.jpeg"
+                    
                 },
                 {
                     "turkish": "Pazartesi",
                     "english": "Monday",
-                    "image": "monday.jpeg",
-                    "difficulty": "kolay"
+                    "image": "monday.jpeg"
+                    
                 },
                 {
                     "turkish": "Salı",
                     "english": "Tuesday",
-                    "image": "tuesday.jpeg",
-                    "difficulty": "kolay"
+                    "image": "tuesday.jpeg"
+                    
                 },
                 {
                     "turkish": "Çarşamba",
                     "english": "Wednesday",
-                    "image": "wednesday.jpeg",
-                    "difficulty": "kolay"
+                    "image": "wednesday.jpeg"
+                    
                 },
                 {
                     "turkish": "Perşembe",
                     "english": "Thursday",
-                    "image": "thursday.jpeg",
-                    "difficulty": "kolay"
+                    "image": "thursday.jpeg"
+                    
                 },
                 {
                     "turkish": "Cuma",
                     "english": "Friday",
-                    "image": "friday.jpeg",
-                    "difficulty": "kolay"
+                    "image": "friday.jpeg"
+                    
                 },
                 {
                     "turkish": "Cumartesi",
                     "english": "Saturday",
-                    "image": "saturday.jpeg",
-                    "difficulty": "kolay"
+                    "image": "saturday.jpeg"
+                    
                 },
                 {
                     "turkish": "Pazar",
                     "english": "Sunday",
-                    "image": "sunday.jpeg",
-                    "difficulty": "kolay"
+                    "image": "sunday.jpeg"
+                    
                 },
                 {
                     "turkish": "sabah",
                     "english": "morning",
-                    "image": "morning.jpeg",
-                    "difficulty": "kolay"
+                    "image": "morning.jpeg"
+                    
                 },
                 {
                     "turkish": "akşam",
                     "english": "evening",
-                    "image": "evening.jpeg",
-                    "difficulty": "kolay"
+                    "image": "evening.jpeg"
+                    
                 },
                 {
                     "turkish": "kiler, mahzen",
                     "english": "cellar",
-                    "image": "cellar.jpeg",
-                    "difficulty": "kolay"
+                    "image": "cellar.jpeg"
+                    
                 },
                 {
                     "turkish": "ateş",
                     "english": "fire",
-                    "image": "fire.jpeg",
-                    "difficulty": "kolay"
+                    "image": "fire.jpeg"
+                    
                 },
                 {
                     "turkish": "resim (tablo)",
                     "english": "painting",
-                    "image": "painting.jpeg",
-                    "difficulty": "kolay"
+                    "image": "painting.jpeg"
+                    
                 },
                 {
                     "turkish": "güvenli",
                     "english": "safe",
-                    "image": "safe.jpeg",
-                    "difficulty": "kolay"
+                    "image": "safe.jpeg"
+                    
                 },
                 {
                     "turkish": "doğru",
                     "english": "true",
-                    "image": "true.jpeg",
-                    "difficulty": "kolay"
+                    "image": "true.jpeg"
+                    
                 },
                 {
                     "turkish": "söz vermek",
                     "english": "promise",
-                    "image": "promise.jpeg",
-                    "difficulty": "kolay"
+                    "image": "promise.jpeg"
+                    
                 },
                 {
                     "turkish": "okul sonrası kulübü",
                     "english": "after school club",
-                    "image": "after_school_club.jpeg",
-                    "difficulty": "kolay"
+                    "image": "after_school_club.jpeg"
+                    
                 },
                 {
                     "turkish": "geç",
                     "english": "late",
-                    "image": "late.jpeg",
-                    "difficulty": "kolay"
+                    "image": "late.jpeg"
+                    
                 },
                 {
                     "turkish": "sıklık zarfları",
                     "english": "adverbs of frequency",
-                    "image": "adverbs_of_frequency.jpeg",
-                    "difficulty": "kolay"
+                    "image": "adverbs_of_frequency.jpeg"
+                    
                 },
                 {
                     "turkish": "her zaman",
                     "english": "always",
-                    "image": "always.jpeg",
-                    "difficulty": "kolay"
+                    "image": "always.jpeg"
+                    
                 },
                 {
                     "turkish": "sık sık",
                     "english": "often",
-                    "image": "often.jpeg",
-                    "difficulty": "kolay"
+                    "image": "often.jpeg"
+                    
                 },
                 {
                     "turkish": "bazen",
                     "english": "sometimes",
-                    "image": "sometimes.jpeg",
-                    "difficulty": "kolay"
+                    "image": "sometimes.jpeg"
+                    
                 },
                 {
                     "turkish": "asla",
                     "english": "never",
-                    "image": "never.jpeg",
-                    "difficulty": "kolay"
+                    "image": "never.jpeg"
+                    
                 },
                 {
                     "turkish": "sandviç",
                     "english": "sandwich",
-                    "image": "sandwich.jpeg",
-                    "difficulty": "kolay"
+                    "image": "sandwich.jpeg"
+                    
                 },
                 {
                     "turkish": "beslenme çantası",
                     "english": "lunchbox",
-                    "image": "lunchbox.jpeg",
-                    "difficulty": "kolay"
+                    "image": "lunchbox.jpeg"
+                    
                 }
+            ]
+        },        
+        {
+            "name": "Unit - 2",
+            "level": "Unit - 2", 
+            "words": [
+                {"turkish": "elma", "english": "apple", "image": "apple.jpeg"},
+                {"turkish": "ekmek", "english": "bread", "image": "bread.jpeg"},
+                {"turkish": "su", "english": "water", "image": "water.jpeg"}
             ]
         }
     ]
