@@ -167,7 +167,7 @@
 
         async function loadWords() {
             try {
-                const response = await fetch('_words.json');
+                const response = await fetch('Swords.json');
                 words = await response.json();
                 selectRandomWord();
             } catch (error) {

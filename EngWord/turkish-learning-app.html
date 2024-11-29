@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <title>Türkçe Öğrenme Uygulaması</title>
+    <style>
+  body {
+    font-family: 'Arial', sans-serif;
+    max-width: 500px;
+    margin: 0 auto;
+    background-color: #f0f0f0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+}
+
+#unitSelection, #gameContainer {
+    width: 100%;
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    padding: 20px;
+    margin-bottom: 20px;
+}
+
+h2 {
+    color: #333;
+    text-align: center;
+    margin-bottom: 15px;
+}
+
+#unitButtons {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px;
+    margin-bottom: 15px;
+}
+
+.unit-button {
+    background-color: #e0e0e0;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 15px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.unit-button:hover, .unit-button.selected {
+    background-color: #4a90e2;
+    color: white;
+}
+
+#exerciseType {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}
+
+#startExercise {
+    width: 100%;
+    background-color: #4a90e2;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 10px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+#startExercise:hover {
+    background-color: #357abd;
+}
+
+.wordContainer {
+    text-align: center;
+    margin-bottom: 15px;
+}
+
+#wordImage {
+    max-width: 200px;
+    max-height: 200px;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+}
+
+#wordDisplay {
+    text-align: center;
+    color: #4a90e2;
+    font-size: 24px;
+    margin-bottom: 15px;
+}
+
+#optionsContainer {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    justify-content: center;
+}
+
+.option {
+    flex: 1 1 calc(50% - 10px);
+    background-color: #f0f0f0;
+    border: none;
+    border-radius: 5px;
+    padding: 15px;
+    text-align: center;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.option:hover, .option.active {
+    background-color: #4a90e2;
+    color: white;
+}
+
+#resultMessage {
+    text-align: center;
+    padding: 10px;
+    border-radius: 5px;
+    margin: 15px 0;
+}
+
+#checkButton, #nextButton {
+    width: 100%;
+    background-color: #4a90e2;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 10px;
+    margin-top: 10px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+#checkButton:disabled, #nextButton:disabled {
+    background-color: #cccccc;
+    cursor: not-allowed;
+}
+
+#checkButton:hover:not(:disabled), #nextButton:hover:not(:disabled) {
+    background-color: #357abd;
+}
+
+@media (max-width: 480px) {
+    body {
+        padding: 10px;
+    }
+    
+    .option {
+        flex: 1 1 100%;
+    }
+}
+    </style>
+</head>
+<body>
+    <div id="unitSelection" class="unit-selection">
+        <h2>Ünite Seçin</h2>
+        <div id="unitButtons" class="unit-buttons"></div>
+
+        <h2>Egzersiz Türü Seçin</h2>
+        <select id="exerciseType">
+            <option value="multiple-choice">Çoktan Seçmeli</option>
+            <option value="writing">Yazma</option>
+        </select>
+
+        <button id="startExercise" onclick="startExercise()">Egzersizi Başlat</button>
+    </div>
+
+    <div id="gameContainer" class="game-container" style="display:none;">
+        <div>🇹🇷 Türkçe → İngilizce</div>
+        <div>Puan: <span id="scoreValue">0</span></div>
+
+        <div class="wordContainer">
+            <img id="wordImage" src="" alt="Kelime görseli">
+        </div>
+
+        <h2 id="wordDisplay" style="color: #4a90e2;"></h2>
+
+        <div id="optionsContainer" class="options"></div>
+
+        <div id="resultMessage"></div>
+
+        <button id="checkButton" onclick="checkAnswer()" disabled>Kontrol Et</button>
+        <button id="nextButton" onclick="selectRandomWord()">Sonraki</button>
+    </div>
+
+    <script>
+        let words = [], units = [], currentWord, 
+            direction = 'tr-en', 
+            score = 0, 
+            selectedOption = null, 
+            currentUnit = null, 
+            exerciseType = 'multiple-choice';
+
+        async function loadUnits() {
+            try {
+                const response = await fetch('words.json');
+                units = await response.json();
+                renderUnitButtons();
+            } catch (error) {
+                console.error('Üniteleri yüklerken hata oluştu:', error);
+                alert('Üniteler yüklenemedi. Lütfen JSON dosyasını kontrol edin.');
+            }
+        }
+
+        function renderUnitButtons() {
+            const unitButtons = document.getElementById('unitButtons');
+            unitButtons.innerHTML = '';
+            units.forEach((unit, index) => {
+                const button = document.createElement('button');
+                button.textContent = `${unit.name} (${unit.level})`;
+                button.classList.add('unit-button');
+                button.onclick = () => selectUnit(index);
+                unitButtons.appendChild(button);
+            });
+        }
+
+        function selectUnit(index) {
+            const prevSelected = document.querySelector('.unit-button.selected');
+            if (prevSelected) prevSelected.classList.remove('selected');
+            
+            const selectedButton = document.getElementById('unitButtons').children[index];
+            selectedButton.classList.add('selected');
+            
+            currentUnit = units[index];
+            words = currentUnit.words;
+        }
+
+        function startExercise() {
+            if (!currentUnit) {
+                alert('Lütfen bir ünite seçin');
+                return;
+            }
+            
+            exerciseType = document.getElementById('exerciseType').value;
+            document.getElementById('unitSelection').style.display = 'none';
+            document.getElementById('gameContainer').style.display = 'block';
+            selectRandomWord();
+        }
+
+        function selectRandomWord() {
+            if (words.length === 0) return;
+            
+            currentWord = words[Math.floor(Math.random() * words.length)];
+            const displayWord = direction === 'tr-en' ? currentWord.english : currentWord.turkish;
+            
+            const wordDisplay = document.getElementById('wordDisplay');
+            wordDisplay.textContent = displayWord;
+            
+            const wordImage = document.getElementById('wordImage');
+            wordImage.src = `images/${currentWord.image || 'placeholder.jpg'}`;
+
+            if (exerciseType === 'multiple-choice') {
+                createMultipleChoiceMode();
+            } else if (exerciseType === 'writing') {
+                createWritingMode();
+            }
+            
+            resetState();
+        }
+
+        function createMultipleChoiceMode() {
+            const optionsContainer = document.getElementById('optionsContainer');
+            const allWords = words.filter(w => w !== currentWord);
+            const options = [currentWord, ...allWords.sort(() => 0.5 - Math.random()).slice(0, 3)]
+                .sort(() => 0.5 - Math.random());
+            
+            optionsContainer.innerHTML = '';
+            options.forEach(word => {
+                const optionBtn = document.createElement('button');
+                optionBtn.classList.add('option');
+                optionBtn.textContent = direction === 'tr-en' ? word.turkish : word.english;
+                optionBtn.onclick = () => selectOption(optionBtn);
+                optionsContainer.appendChild(optionBtn);
+            });
+        }
+
+        function createWritingMode() {
+            const optionsContainer = document.getElementById('optionsContainer');
+            optionsContainer.innerHTML = `
+                <input type="text" id="wordInput" placeholder="Kelimeyi yazın">
+            `;
+            const input = document.getElementById('wordInput');
+            input.focus();
+            input.addEventListener('input', () => {
+                document.getElementById('checkButton').disabled = input.value.trim() === '';
+            });
+        }
+
+        function selectOption(button) {
+            const previousSelection = document.querySelector('.option.active');
+            if (previousSelection) previousSelection.classList.remove('active');
+            
+            selectedOption = button;
+            selectedOption.classList.add('active');
+            document.getElementById('checkButton').disabled = false;
+        }
+
+        function checkAnswer() {
+            const correctAnswer = direction === 'tr-en' ? currentWord.turkish : currentWord.english;
+            let isCorrect = false;
+
+            if (exerciseType === 'multiple-choice') {
+                isCorrect = selectedOption.textContent === correctAnswer;
+            } else if (exerciseType === 'writing') {
+                const userAnswer = document.getElementById('wordInput').value.trim().toLowerCase();
+                isCorrect = userAnswer === correctAnswer.toLowerCase();
+            }
+
+            const resultMessage = document.getElementById('resultMessage');
+            if (isCorrect) {
+                resultMessage.textContent = 'Bravo! 🎉 Doğru cevap!';
+                resultMessage.style.backgroundColor = '#dff0d8';
+                resultMessage.style.color = 'green';
+                score += 3;
+            } else {
+                resultMessage.textContent = `Üzgünüm, yanlış cevap. 😔 Doğru cevap: ${correctAnswer}`;
+                resultMessage.style.backgroundColor = '#f2dede';
+                resultMessage.style.color = 'red';
+                score = Math.max(0, score - 1);
+            }
+
+            document.getElementById('scoreValue').textContent = score;
+            document.getElementById('checkButton').disabled = true;
+        }
+
+        function resetState() {
+            selectedOption = null;
+            const resultMessage = document.getElementById('resultMessage');
+            resultMessage.textContent = '';
+            resultMessage.style.backgroundColor = 'transparent';
+            resultMessage.style.color = 'black';
+            document.getElementById('checkButton').disabled = true;
+
+            if (exerciseType === 'multiple-choice') {
+                document.querySelectorAll('.option').forEach(btn => {
+                    btn.classList.remove('correct', 'wrong', 'active');
+                });
+            } else if (exerciseType === 'writing') {
+                const input = document.getElementById('wordInput');
+                if (input) input.value = '';
+            }
+        }
+
+        window.onload = loadUnits;
+    </script>
+</body>
+</html>
